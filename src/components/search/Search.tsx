@@ -4,7 +4,7 @@ import styles from "@/components/search/Search.module.css";
 
 interface searchedDataProp {
   word: string;
-  updateWord: (type: string) => void;
+  updateWord: (type: any) => void;
 }
 
 const Search: React.FC<searchedDataProp> = ({ word, updateWord }) => {
