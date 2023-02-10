@@ -8,7 +8,7 @@ interface searchedDataProp {
 }
 
 const Search: React.FC<searchedDataProp> = ({ word, updateWord }) => {
-  const [searchedData, setSearchedData] = useState<string>("");
+  const [searchedData, setSearchedData] = useState("");
 
   useEffect(() => {
     setSearchedData(word);
