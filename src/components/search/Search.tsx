@@ -4,11 +4,11 @@ import styles from "@/components/search/Search.module.css";
 
 interface searchedDataProp {
   word: string;
-  updateWord: (type: string) => void;
+  updateWord: (type: any) => void;
 }
 
 const Search: React.FC<searchedDataProp> = ({ word, updateWord }) => {
-  const [searchedData, setSearchedData] = useState<string>("");
+  const [searchedData, setSearchedData] = useState("");
 
   useEffect(() => {
     setSearchedData(word);
@@ -31,7 +31,7 @@ const Search: React.FC<searchedDataProp> = ({ word, updateWord }) => {
         name="search"
         type="text-area"
         placeholder="word"
-        onKeyDown={enterHandler}
+        onKeyUp={enterHandler}
       />
       <button onClick={() => updateWord(searchedData)}></button>
     </form>

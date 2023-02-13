@@ -19,27 +19,20 @@ const Synonyms = (searchedWord: any) => {
   const [synonyms, setSynonyms] = useState<synonymData[]>([]);
 
   useEffect(() => {
-    if (searchedWord.length) {
-      fetch(`https://api.datamuse.com/words?ml=alive&max=30`)
-        .then((res) => res.json())
-        .then((data) => {
-          setSynonyms(data);
-        });
-    } else {
-      fetch(
-        "https://api.datamuse.com/words?ml=" + searchedWord.word + "&max=30"
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setSynonyms(data);
-          console.log("Synonyms.tsx " + searchedWord.word);
-        });
-    }
+    fetch("https://api.datamuse.com/words?ml=" + searchedWord.word + "&max=30")
+      .then((res) => res.json())
+      .then((data) => {
+        setSynonyms(data);
+        console.log("Synonyms.tsx " + searchedWord.word);
+      });
   }, [searchedWord]);
 
   return (
     <div className={classes.synonyms}>
-      <h1>Synonyms of &apos;{searchedWord.word}&apos;</h1>
+      {!searchedWord.word && <h1>Search for a word!</h1>}
+      {searchedWord.word && (
+        <h1>Synonyms of &apos;{searchedWord.word}&apos;:</h1>
+      )}
       <ul className={classes.ul}>
         {synonyms.map((synonym) => (
           <li className={classes.list} key={synonym.word}>
